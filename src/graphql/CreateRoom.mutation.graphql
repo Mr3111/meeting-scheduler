@@ -1,0 +1,9 @@
+mutation CreateRoom($name: String!, $id: Int!, $floor: Int!, $buildingId: Int!) {
+    MeetingRoom(name: $name, id: $id, floor: $floor, buildingId: $buildingId) {
+        id
+        building{
+            id
+        }
+        name
+    }
+}

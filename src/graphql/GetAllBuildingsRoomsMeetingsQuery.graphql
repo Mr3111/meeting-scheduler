@@ -1,0 +1,19 @@
+query GetAllBuildingsRoomsMeetings{
+    Buildings {
+        id
+        name
+        meetingRooms {
+            id
+            name
+            floor
+            meetings {
+                id
+                title
+                date
+                startTime
+                endTime
+            }
+        }
+    }
+}
+

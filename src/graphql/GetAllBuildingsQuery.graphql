@@ -1,0 +1,7 @@
+query GetAllBuildings{
+    Buildings {
+        name
+        id
+    }
+}
+

@@ -1,0 +1,9 @@
+query GetAllMeetings{
+    Meetings {
+        id
+        title
+        date
+        startTime
+        endTime
+    }
+}
