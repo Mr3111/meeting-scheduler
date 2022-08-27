@@ -5,7 +5,7 @@ const headers = {
 };
 
 const graphQLClient = new GraphQLClient(
-    'http://smart-meeting.herokuapp.com/graphql',
+    'https://smart-meeting.herokuapp.com/graphql',
     {
         headers,
     }

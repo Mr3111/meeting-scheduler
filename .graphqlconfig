@@ -4,7 +4,7 @@
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "http://smart-meeting.herokuapp.com/graphql",
+        "url": "https://smart-meeting.herokuapp.com/graphql",
         "headers": {
           "user-agent": "JS GraphQL"
         },
