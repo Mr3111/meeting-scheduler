@@ -1,7 +1,9 @@
 import { GraphQLClient } from 'graphql-request';
 
+import { localStorageGetItem } from '../../utils';
+
 const headers = {
-    token: 'test1234',
+    token: localStorageGetItem('token') ?? 'test1234',
 };
 
 const graphQLClient = new GraphQLClient(
