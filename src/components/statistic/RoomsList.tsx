@@ -73,7 +73,7 @@ const RoomsList = ({ rooms, building }: RoomsListProps) => {
                     </Title>
                 </Space>
                 <Button
-                    type="ghost"
+                    type="primary"
                     style={{ marginBottom: '10px' }}
                     onClick={() => setVisible(true)}
                 >

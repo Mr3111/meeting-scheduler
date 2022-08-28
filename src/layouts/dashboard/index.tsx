@@ -1,58 +1,17 @@
-import { CalendarOutlined, VideoCameraOutlined } from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
+import { Layout } from 'antd';
 import React from 'react';
 import './Dashboard.css';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
-const { Header, Content, Footer, Sider } = Layout;
-const items = [
-    {
-        icon: React.createElement(CalendarOutlined),
-        key: '/',
-        label: 'Schedule',
-    },
-    {
-        icon: React.createElement(VideoCameraOutlined),
-        key: 'meetings/new',
-        label: 'Meet',
-    },
-];
+import Header from '../header/Header';
+
+const { Content, Footer } = Layout;
 
 const DashboardLayout = () => {
-    const navigate = useNavigate();
     return (
-        <Layout hasSider>
-            <Sider
-                style={{
-                    bottom: 0,
-                    height: '100vh',
-                    left: 0,
-                    overflow: 'auto',
-                    position: 'fixed',
-                    top: 0,
-                }}
-            >
-                <div className="logo">Meeter</div>
-                <Menu
-                    theme="dark"
-                    mode="inline"
-                    defaultSelectedKeys={['/']}
-                    items={items}
-                    onClick={({ key }) => navigate(key)}
-                />
-            </Sider>
-            <Layout
-                className="site-layout"
-                style={{
-                    marginLeft: 200,
-                }}
-            >
-                <Header
-                    className="site-layout-background"
-                    style={{
-                        padding: 0,
-                    }}
-                />
+        <Layout>
+            <Layout className="site-layout">
+                <Header />
                 <Content
                     className="site-layout-content"
                     style={{

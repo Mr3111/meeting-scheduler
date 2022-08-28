@@ -12,6 +12,8 @@ import {
     Select,
     TimePicker,
 } from 'antd';
+import type { Moment } from 'moment';
+import moment from 'moment';
 import React from 'react';
 
 import type {
@@ -81,6 +83,10 @@ export default function AddMeetingModal({
         mutate({ ...variables });
     }
 
+    function disabledDate(current: Moment) {
+        return current && current < moment().subtract(1, 'days');
+    }
+
     return (
         <ModalForm
             visible={visible}
@@ -115,6 +121,7 @@ export default function AddMeetingModal({
                         style={{
                             width: '100%',
                         }}
+                        disabledDate={disabledDate}
                     />
                 </Form.Item>
                 <span
@@ -144,6 +151,7 @@ export default function AddMeetingModal({
                     <TimePicker.RangePicker
                         use12Hours
                         format="HH:mm"
+                        // disabledTime={disabledTime}
                         style={{
                             width: '100%',
                         }}

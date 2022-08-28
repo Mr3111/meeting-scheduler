@@ -3,15 +3,14 @@ import { Button, Row, Space, Tooltip } from 'antd';
 import React, { useState } from 'react';
 
 import AddMeetingModal from '../components/modals/AddMeetingModal';
-import BuildingsList from '../components/statistic/BuildingsList';
+import MeetingsTable from '../components/table/MeetingsTable';
 
-const AddMeeting = () => {
+const Admin = () => {
     const [visible, setVisible] = useState(false);
 
     return (
         <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
             <Row justify="end">
-                {/*<Link to="meetings/new">*/}
                 <Tooltip title="Schedule Meeting">
                     <Button
                         type="primary"
@@ -22,9 +21,8 @@ const AddMeeting = () => {
                         New Meeting
                     </Button>
                 </Tooltip>
-                {/*</Link>*/}
             </Row>
-            <BuildingsList />
+            <MeetingsTable />
             <AddMeetingModal
                 visible={visible}
                 onCancel={() => setVisible(false)}
@@ -33,4 +31,4 @@ const AddMeeting = () => {
     );
 };
 
-export default AddMeeting;
+export default Admin;

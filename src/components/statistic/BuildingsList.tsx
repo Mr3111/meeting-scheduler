@@ -8,21 +8,6 @@ import graphqlClient from '../../lib/clients/graphqlClient';
 import type { RoomType } from './RoomsList';
 import RoomsList from './RoomsList';
 
-// const data = [
-//     {
-//         id: 1,
-//         name: 'Building 8',
-//     },
-//     {
-//         id: 2,
-//         name: 'Building 4',
-//     },
-//     {
-//         id: 3,
-//         name: 'Building 6',
-//     },
-// ];
-
 export type BuildingType = {
     id: number;
     name: string;
@@ -61,7 +46,7 @@ function BuildingsList() {
     return (
         <Card
             title="Buildings"
-            extra={<Button type="link">Add Building</Button>}
+            // extra={<Button type="link">Add Building</Button>}
         >
             <Row gutter={10}>
                 <Col span={9}>
@@ -75,8 +60,12 @@ function BuildingsList() {
                             </Col>
                             <Col>
                                 <Statistic
-                                    title="Free now"
-                                    value={2}
+                                    title="Total Rooms"
+                                    value={data.Buildings?.reduce(
+                                        (acc, curr) =>
+                                            acc + curr!.meetingRooms!.length,
+                                        0
+                                    )}
                                     valueStyle={{ color: '#3f8600' }}
                                 />
                             </Col>

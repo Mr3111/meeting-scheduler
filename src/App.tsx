@@ -8,6 +8,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import DashboardLayout from './layouts/dashboard';
+import Admin from './pages/Admin';
 import Home from './pages/Home';
 
 const queryClient = new QueryClient();
@@ -19,9 +20,7 @@ const App: React.FC = () => {
                 <Routes>
                     <Route path="/" element={<DashboardLayout />}>
                         <Route index element={<Home />} />
-                        {/*<Route path="meetings">*/}
-                        {/*    <Route path="new" element={<AddMeetingModal />} />*/}
-                        {/*</Route>*/}
+                        <Route path="admin" element={<Admin />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
