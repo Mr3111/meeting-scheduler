@@ -4,12 +4,11 @@
 
 ## [Live Demo!](https://meeting-scheduler-3111.vercel.app/)
 
-This is using the official [Vite](https://vitejs.dev/) [react-ts](https://stackblitz.com/edit/vitejs-vite-is3dmk?file=index.html&terminal=dev) template(`npm init vite@latest myapp -- --template react-ts`) and some extended setup.
+This is a meeting scheduler app. It contains 2 modes:
+1. **Normal** - Create a meeting and see all meetings.
+2. **Admin** - Create meeting rooms in different buildings.
 
-- [eslint-typescript](https://github.com/typescript-eslint/typescript-eslint) and [Prettier](https://prettier.io/) integration. Rules are 100% my personal setup 💅
-- [Jest](https://jestjs.io/), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/), [MSW](https://mswjs.io/)
-- [tailwindcss](https://tailwindcss.com/) 
-- [antd](https://ant.design/) integration
+Note: This backend resets automatically after some time.
 
 # Installation
 
@@ -47,6 +46,7 @@ yarn build     # build production bundle to 'dist' directly
 yarn prettier  # run prettier for json|yml|css|md|mdx files
 yarn clean     # remove 'node_modules' 'yarn.lock' 'dist' completely
 yarn serve     # launch server for production bundle in local
+yarn serve     # uses codegen to generate hooks by using react-query
 ```
 
 
