@@ -1,28 +1,14 @@
-import { useQueryClient } from '@tanstack/react-query';
-import {
-    Button,
-    Form,
-    Input,
-    Row,
-    Space,
-    Table,
-    Tag,
-    Tooltip,
-    Typography,
-} from 'antd';
+import { Button, Row, Space, Table, Tag, Tooltip, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React, { useState } from 'react';
 
-import type { CreateRoomMutationVariables } from '../../generated/graphql';
-import { useCreateRoomMutation } from '../../generated/graphql';
-import graphqlClient from '../../lib/clients/graphqlClient';
-import ModalForm from '../modals/ModalForm';
+import AddRoomModal from '../modals/AddRoomModal';
 
 import type { BuildingType } from './BuildingsList';
 
 const { Title } = Typography;
 
-const floors = Array.from(Array(10).keys());
+export const floors = Array.from(Array(10).keys());
 
 const columns: ColumnsType<RoomType> = [
     {
@@ -71,28 +57,12 @@ type RoomsListProps = {
 };
 
 const RoomsList = ({ rooms, building }: RoomsListProps) => {
-    const queryClient = useQueryClient();
-    const { mutate } = useCreateRoomMutation(graphqlClient, {
-        onSuccess: () => {
-            setVisible(false);
-            queryClient.invalidateQueries(['GetAllBuildingsRoomsMeetings']);
-        },
-    });
     const [visible, setVisible] = useState(false);
 
     if (!building) {
         return <Typography>No building selected</Typography>;
     }
 
-    function onFinish(values: any) {
-        const variables = {
-            ...values,
-            buildingId: building!.id,
-            floor: parseInt(values.floor, 10),
-            id: 15,
-        } as CreateRoomMutationVariables;
-        mutate({ ...variables });
-    }
     return (
         <div>
             <Row justify="space-between">
@@ -110,39 +80,11 @@ const RoomsList = ({ rooms, building }: RoomsListProps) => {
                     Add Room
                 </Button>
             </Row>
-            <ModalForm
+            <AddRoomModal
                 visible={visible}
                 onCancel={() => setVisible(false)}
-                onComplete={onFinish}
-                title={`Add room to building ${name}`}
-                submitButtonText="Add Room"
-            >
-                <Form.Item
-                    label="Name"
-                    name="name"
-                    rules={[
-                        {
-                            message: 'Room name cannot be empty!',
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-
-                <Form.Item
-                    label="Floor"
-                    name="floor"
-                    rules={[
-                        {
-                            message: 'Please enter floor number!',
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input type="number" />
-                </Form.Item>
-            </ModalForm>
+                building={building}
+            />
             <Table columns={columns} dataSource={rooms} />
         </div>
     );

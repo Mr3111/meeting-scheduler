@@ -1,0 +1,12 @@
+query GetAllBuildingsRooms{
+    Buildings{
+        id
+        name
+        meetingRooms{
+            id
+            name
+            floor
+        }
+    }
+}
+

@@ -1,7 +1,9 @@
+import type { FormInstance } from 'antd';
 import { Button, Divider, Form, Modal, Space } from 'antd';
 import type { ReactNode } from 'react';
+import { useEffect, useRef } from 'react';
 
-interface ModalFormProps {
+export interface ModalFormProps {
     visible: boolean;
     onCancel: () => void;
     onComplete: (val: any) => any;
@@ -10,6 +12,26 @@ interface ModalFormProps {
     submitButtonText?: string;
     cancelButtonText?: string;
 }
+
+const useResetFormOnCloseModal = ({
+    form,
+    visible,
+}: {
+    form: FormInstance;
+    visible: boolean;
+}) => {
+    const prevVisibleRef = useRef<boolean>();
+    useEffect(() => {
+        prevVisibleRef.current = visible;
+    }, [visible]);
+    const prevVisible = prevVisibleRef.current;
+
+    useEffect(() => {
+        if (!visible && prevVisible) {
+            form.resetFields();
+        }
+    }, [form, prevVisible, visible]);
+};
 
 export default function ModalForm({
     visible,
@@ -20,6 +42,12 @@ export default function ModalForm({
     cancelButtonText,
     children,
 }: ModalFormProps) {
+    const [form] = Form.useForm();
+
+    useResetFormOnCloseModal({
+        form,
+        visible,
+    });
     const onFinish = (values: any) => {
         onComplete(values);
     };
@@ -32,37 +60,14 @@ export default function ModalForm({
             onCancel={onCancel}
         >
             <Form
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
+                form={form}
+                labelCol={{ span: 3 }}
+                wrapperCol={{ span: 20 }}
                 autoComplete="off"
                 onFinish={onFinish}
             >
                 {children}
-                {/*<Form.Item*/}
-                {/*    label="Name"*/}
-                {/*    name="name"*/}
-                {/*    rules={[*/}
-                {/*        {*/}
-                {/*            message: 'Room name cannot be empty!',*/}
-                {/*            required: true,*/}
-                {/*        },*/}
-                {/*    ]}*/}
-                {/*>*/}
-                {/*    <Input />*/}
-                {/*</Form.Item>*/}
 
-                {/*<Form.Item*/}
-                {/*    label="Floor"*/}
-                {/*    name="floor"*/}
-                {/*    rules={[*/}
-                {/*        {*/}
-                {/*            message: 'Please enter floor number!',*/}
-                {/*            required: true,*/}
-                {/*        },*/}
-                {/*    ]}*/}
-                {/*>*/}
-                {/*    <Input type="number" />*/}
-                {/*</Form.Item>*/}
                 <Divider style={{ marginBottom: '8px' }} />
                 <Form.Item
                     style={{

@@ -1,8 +1,8 @@
-# Nested Checkbox app 
+# Meeting scheduler 
 
-> Create nested checkbox from a given flat array of objects with title and parentId pairs.  
+> Use this app to schedule meetings. It internally  uses GraphQL to communicate with the backend. 
 
-## [Live Demo!](https://checkbox-tree-3111.vercel.app/)
+## [Live Demo!](https://meeting-scheduler-3111.vercel.app/)
 
 This is using the official [Vite](https://vitejs.dev/) [react-ts](https://stackblitz.com/edit/vitejs-vite-is3dmk?file=index.html&terminal=dev) template(`npm init vite@latest myapp -- --template react-ts`) and some extended setup.
 
@@ -14,7 +14,7 @@ This is using the official [Vite](https://vitejs.dev/) [react-ts](https://stackb
 # Installation
 
 ```
-npx degit Mr3111/checkbox-tree-app myapp
+npx degit Mr3111/meeting-scheduler myapp
 ```
 
 ### yarn
