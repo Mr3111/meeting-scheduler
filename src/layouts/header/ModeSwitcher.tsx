@@ -8,7 +8,7 @@ export default function ModeSwitcher() {
     const [mode, setMode] = useState(false);
 
     useEffect(() => {
-        if (location.pathname === '/admin') {
+        if (location.pathname === '/configure') {
             setMode(true);
         } else {
             setMode(false);
@@ -17,7 +17,7 @@ export default function ModeSwitcher() {
 
     function onChange(checked: boolean) {
         if (checked) {
-            navigate('/admin');
+            navigate('/configure');
         } else {
             navigate('/');
         }
