@@ -199,28 +199,23 @@ const MeetingsTable: React.FC = () => {
             filterSearch: true,
             key: 'status',
             render: (_, record) => {
-                const currDate = moment().format('L');
-                if (currDate.localeCompare(record.date!) < 0) {
-                    return <Tag color="warning">Past</Tag>;
+                const { date, startTime, endTime } = record;
+                const startDate = moment(`${date} ${startTime}`, 'L HH:mm');
+                const endDate = moment(`${date} ${endTime}`, 'L HH:mm');
+                const now = moment();
+                if (now.isBetween(startDate, endDate)) {
+                    return (
+                        <span>
+                            <Badge status="success" />
+                            Active
+                        </span>
+                    );
                 }
-                const currentTime = moment().format('HH:mm');
-                // console.log(
-                //     `${record.startTime} - ${record.endTime}`,
-                //     currentTime.localeCompare(record.startTime as string),
-                //     currentTime.localeCompare(record.endTime as string)
-                // );
-                if (
-                    currentTime.localeCompare(record.startTime as string) < 1 &&
-                    currentTime.localeCompare(record.endTime as string) < 1
-                ) {
+
+                if (now.diff(startDate) < 0) {
                     return <Tag color="blue">Upcoming</Tag>;
                 }
-                return (
-                    <span>
-                        <Badge status="success" />
-                        Active
-                    </span>
-                );
+                return <Tag color="red">Past</Tag>;
             },
             title: 'Status',
         },
